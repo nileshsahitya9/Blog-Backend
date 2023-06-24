@@ -9,6 +9,8 @@ import (
 	_ "github.com/lib/pq"
 )
 
+var DB *sql.DB
+
 func PostgreSQLDB() (*sql.DB, error) {
 	cfg, err := config.LoadConfig()
 
@@ -27,6 +29,8 @@ func PostgreSQLDB() (*sql.DB, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	DB = db
 
 	return db, nil
 }
