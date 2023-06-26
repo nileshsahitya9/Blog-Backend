@@ -28,10 +28,19 @@ go run cmd/main.go
 2. \dt+ - to check all the tables
 3. \d+ <table_name> DESCRIBE TABLE - for the table description
 
-#APIS - will prepare swagger
+##APIS - will prepare swagger
 
-1.curl --location --request POST 'http://localhost:8080/api/v1/authentication/register' \
+#Authentications
+
+1. curl --location --request POST 'http://localhost:8080/api/v1/authentication/register' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "email" : "nileshsahitya9@gmail.com"
+}'
+
+2. curl --location --request POST 'http://localhost:8080/api/v1/authentication/login' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "email" : "nileshsahitya9@gmail.com",
+    "otp": 399463
 }'

@@ -3,6 +3,7 @@ package models
 import (
 	"database/sql"
 	"errors"
+	"log"
 
 	"github.com/nileshsahitya9/Blogs-Backend/db"
 	"github.com/nileshsahitya9/Blogs-Backend/internal/common"
@@ -50,4 +51,17 @@ func CheckEmailExists(email string) (bool, error) {
 		return false, err
 	}
 	return exists, nil
+}
+
+func GetUserIDByEmail(email string) int {
+	query := "SELECT id FROM users WHERE email = $1"
+	row := db.DB.QueryRow(query, email)
+
+	var userID int
+	err := row.Scan(&userID)
+	if err != nil {
+		log.Fatalln("Failed to fetch user ID from the database:", err)
+		return -1
+	}
+	return userID
 }

@@ -73,3 +73,15 @@ func generateOTP() string {
 	otp := rand.Intn(max-min+1) + min
 	return fmt.Sprintf("%06d", otp)
 }
+
+func GetUserByEmail(email string) (int, error) {
+
+	userId := models.GetUserIDByEmail(email)
+
+	if userId < 0 {
+		return -1, errors.New("User not exists")
+	}
+
+	return userId, nil
+
+}
