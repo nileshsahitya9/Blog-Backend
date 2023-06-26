@@ -18,12 +18,12 @@ func PostgreSQLDB() (*sql.DB, error) {
 		return nil, err
 	}
 
-	db, err := sql.Open("postgres", fmt.Sprintf("postgres://%s:%s@%s:%d/%s?sslmode=disable", cfg.MySQLUsername, cfg.MySQLPassword, cfg.MySQLHost, cfg.MySQLPort, cfg.MySQLDatabase))
+	db, err := sql.Open("postgres", fmt.Sprintf("postgres://%s:%s@%s:%d/%s?sslmode=disable", cfg.DBUsername, cfg.DBPassword, cfg.DBHost, cfg.DBPort, cfg.DBDatabase))
 	if err != nil {
 
 		return nil, err
 	}
-	fmt.Println(fmt.Sprintf("postgres://%s:%s@%s:%d/%s?sslmode=disable&client_encoding=utf8", cfg.MySQLUsername, cfg.MySQLPassword, cfg.MySQLHost, cfg.MySQLPort, cfg.MySQLDatabase))
+	fmt.Println(fmt.Sprintf("postgres://%s:%s@%s:%d/%s?sslmode=disable&client_encoding=utf8", cfg.DBUsername, cfg.DBPassword, cfg.DBHost, cfg.DBPort, cfg.DBDatabase))
 
 	err = db.Ping()
 	if err != nil {

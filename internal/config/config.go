@@ -10,11 +10,11 @@ import (
 )
 
 type AppConfig struct {
-	MySQLHost     string
-	MySQLPort     int
-	MySQLUsername string
-	MySQLPassword string
-	MySQLDatabase string
+	DBHost     string
+	DBPort     int
+	DBUsername string
+	DBPassword string
+	DBDatabase string
 }
 
 func LoadConfig() (*AppConfig, error) {
@@ -24,23 +24,23 @@ func LoadConfig() (*AppConfig, error) {
 		log.Fatal("Error loading .env file")
 	}
 
-	host := os.Getenv("MYSQL_HOST")
-	portStr := os.Getenv("MYSQL_PORT")
-	username := os.Getenv("MYSQL_USERNAME")
-	password := os.Getenv("MYSQL_PASSWORD")
-	database := os.Getenv("MYSQL_DATABASE")
+	host := os.Getenv("DB_HOST")
+	portStr := os.Getenv("DB_PORT")
+	username := os.Getenv("DB_USERNAME")
+	password := os.Getenv("DB_PASSWORD")
+	database := os.Getenv("DB_DATABASE")
 
 	port, err := strconv.Atoi(portStr)
 	if err != nil {
-		return nil, fmt.Errorf("failed to convert MYSQL_PORT to integer: %v", err)
+		return nil, fmt.Errorf("failed to convert DB_PORT to integer: %v", err)
 	}
 
 	config := &AppConfig{
-		MySQLHost:     host,
-		MySQLPort:     port,
-		MySQLUsername: username,
-		MySQLPassword: password,
-		MySQLDatabase: database,
+		DBHost:     host,
+		DBPort:     port,
+		DBUsername: username,
+		DBPassword: password,
+		DBDatabase: database,
 	}
 
 	return config, nil
