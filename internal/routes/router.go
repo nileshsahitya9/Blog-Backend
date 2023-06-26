@@ -1,16 +1,17 @@
 package routes
 
 import (
-	"net/http"
+	"fmt"
 
-	"github.com/nileshsahitya9/Blogs-Backend/internal/controllers"
+	"github.com/gorilla/mux"
+	"github.com/nileshsahitya9/Blogs-Backend/internal/constants"
 )
 
-func SetupRouter() *http.ServeMux {
-	router := http.NewServeMux()
+const APIBaseURL = constants.API_PREFIX_URL
 
-	router.HandleFunc("/", controllers.HomeHandler)
-	// Add more routes here
+func SetupRouter() *mux.Router {
+	router := mux.NewRouter()
+	SetupAuthenticationRoutes(router.PathPrefix(fmt.Sprintf("%s/authentication", APIBaseURL)).Subrouter())
 
 	return router
 }
